@@ -1,0 +1,8 @@
+#names{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: end;
+    border: 1px solid red;
+}

@@ -24,7 +24,7 @@ var handleMove = function(source, target ) {
     if (move === null)  return 'snapback';
 };
 
-var socket = io();
+// var socket = io();
  
   window.onclick = function(e) {
       socket.emit('message', 'I am client');
