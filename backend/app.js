@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 
 var io = require('socket.io')(http);
 
-const {socketserver}=require("./src/socketserver");
+const {socketserver}=require("./serverscript/socketserver");
 
 socketserver(io);
 

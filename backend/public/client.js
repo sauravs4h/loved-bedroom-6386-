@@ -1,5 +1,15 @@
+
+
 var board;
 var game;
+
+let roomidd;
+
+
+socket.on("ooproom",(data)=>{
+  roomidd=data;
+  console.log("------------"+data);
+ })
 
 window.onload = function () {
     initGame();
@@ -13,6 +23,7 @@ var initGame = function() {
     draggable: true,
     position: 'start',
     sparePieces: true,
+    showNotation: true,
     onDragStart: onDragStart,
     onDrop: handleMove,
     onMouseoutSquare: onMouseoutSquare,
@@ -39,13 +50,23 @@ var handleMove = function(source, target ) {
     var move = game.move({from: source, to: target});
     
     if (move === null)  return 'snapback';
-   // else socket.emit('move', move);
+    else socket.emit('move', move);
 
 
    /////saurav
-   else socket.emit('chessMove', {
-    from: source,
-    to: target
+
+
+   
+
+   
+   
+    socket.emit('chessMove', {
+    
+             room: roomidd,
+            // color: turn, 
+            from: move.from, 
+            to: move.to,
+            piece: move.piece
 
    });
 
@@ -103,6 +124,18 @@ function onDrop (source, target) {
 
   // illegal move
   if (move === null) return 'snapback'
+
+
+
+  
+
+      //   socket.emit('chessMove', { 
+      //     room: roomidd,
+           
+      //     from: move.from, 
+      //     to: move.to,
+      //     // piece: move.piece
+      // });
 }
 
 function onMouseoverSquare (square, piece) {
@@ -140,33 +173,64 @@ function onSnapEnd () {
 
 /////////////////experiment
 
+$(document).on('click', '.setOrientation', function(){
 
+  roomidd=$(this).data('room')
+        
+  socket.emit('setOrientation', {
+      room: $(this).data('room'),
+      color: ($(this).data('color') === 'black') ? 'white': 'black'
+  });
+  
+  board.orientation( $(this).data('color') );
+  board.start();
+  if($(this).data('color') == 'black'){
+      $('.notification')
+      .html('<div class="alert alert-success">Great ! Let\'s start game. You choose Black. Wait for White Move.</div>');
+  }else{
+      $('.notification')
+      .html('<div class="alert alert-success">Great ! Let\'s start game. You choose White. Start with First Move.</div>');
+  }
+});
 
 
 socket.on('setOrientationOppnt', (requestData) => {
-  console.log("oooooooooooooo"+ requestData);
-  console.log(requestData)
-  if(requestData.color=="white"){
-    cfg.orientation= 'black'
-  }else{
-    cfg.orientation= 'white'
+  console.log("abc"+requestData);
+  board.orientation(requestData.color);
+  board.start();
+  $('#onlinePlayers li#'+requestData.id).addClass('active');
+  if(requestData.color == 'white'){  
+      $('.notification')
+  .html('<div class="alert alert-success">Game is initialized by <strong>'+requestData.name+'</strong>. Let\'s start with First Move.</div>');
+  } else{
+      $('.notification')
+  .html('<div class="alert alert-success">Game is initialized by <strong>'+requestData.name+'</strong>. Wait for White Move.</div>');
   }
+  
+});
+
+
+
+
+// socket.on('setOrientationOppnt', (requestData) => {
+//   console.log("oooooooooooooo"+ requestData);
+//   // board.orientation(requestData.color)
 
    
   
   
-});
+// });
 
 socket.on('oppntChessMove', (requestData) => {
-  console.log(requestData);
+ // console.log(requestData);
   // let color = requestData.color;
   let source = requestData.from;
   let target = requestData.to;
   let promo = requestData.promo||'';
 
 
-  // chess.move({from:source,to:target,promotion:promo});
-  // board.position(chess.fen());
+  game.move({from:source,to:target,promotion:promo});
+  board.position(game.fen());
   //chess.move(target);
   //chess.setFenPosition();
 
