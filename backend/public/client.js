@@ -64,6 +64,10 @@ var handleMove = function(source, target ) {
   //           to: move.to,
   //           piece: move.piece
 
+
+
+  
+
   //  });    
 };
 
