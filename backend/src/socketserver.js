@@ -41,7 +41,6 @@ const socketserver=(io)=>{
         });
 
 
-
         socket.on('acceptGameRequest', (requestData) => {
            // console.log(requestData)
             let user = users.filter(user=>user.id == socket.id)[0];
@@ -50,10 +49,42 @@ const socketserver=(io)=>{
                 id: user.id,
                 name: user.name,
                 room: user.room,
+
                 
             });
             
         });
+
+
+        socket.on("setOrientation",(data)=>{
+            let user = users.filter(user=>user.id == socket.id)[0];
+
+            console.log(user)
+            socket.broadcast.to(data.room).emit('setOrientationOppnt', {
+                color:data.color,
+                id: user.id,
+                name: user.name,
+                room: user.room,
+            });
+        })
+
+
+
+
+        socket.on('chessMove', (requestData) => {
+            console.log(requestData);
+            socket.broadcast.to(requestData.room).emit('oppntChessMove',{
+                color: requestData.color,
+                from: requestData.from,
+                to: requestData.to,
+                piece: requestData.piece,
+                promo: requestData.promo||''
+
+            });
+        });
+
+
+
 
     })
 }

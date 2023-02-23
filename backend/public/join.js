@@ -1,16 +1,16 @@
 const socket=io("http://localhost:3000/",{transports:["websocket"]})
 
-console.log("hello")
+
+
+
+
+////////////////////////////////////////////////////////////////
 
 
 
 
 
-
-socket.on("hello",(msg)=>{
-    console.log(msg)
-})
-
+///////////////////////////////////////////////////////////////////////////////
 
 let username=prompt("Enter your name","shaktiman");
     
@@ -107,14 +107,27 @@ socket.on('gameRequestAccepted', (userData) => {
     
     let choice_whitebutton=document.createElement("button");
     choice_whitebutton.innerText="white";
+    choice_whitebutton.value="white";
+    choice_whitebutton.classList.add("setOrientation")
     let choice_blackbutton=document.createElement("button");
     choice_blackbutton.innerText="black";
+    choice_blackbutton.value="black";
+    choice_blackbutton.classList.add("setOrientation")
 
 
     choicediv.append(choice_text,choice_whitebutton,choice_blackbutton);
 
     notidiv.append(sentnote,choicediv);
 
+
+    const colorbutton=document.querySelectorAll(".setOrientation");
+
+    colorbutton.forEach((el)=>{
+        el.addEventListener("click",()=>{
+            console.log(el.value)
+            setorientation(userData,el.value)
+        })
+    })
 
 
     // $('.notification')
@@ -125,4 +138,44 @@ socket.on('gameRequestAccepted', (userData) => {
 
     // $('#onlinePlayers li#'+userData.id).addClass('active');
 });
+
+
+function setorientation(Data,color){
+    console.log("DATA  :-",Data);
+
+    
+
+    socket.emit('setOrientation',{
+        color:color,
+        room:Data.room,
+        
+    })
+
+
+
+
+
+
+
+    // $(document).on('click', '.setOrientation', function(){
+        
+    //     socket.emit('setOrientation', {
+    //         room: $(this).data('room'),
+    //         color: ($(this).data('color') === 'black') ? 'white': 'black'
+    //     });
+        
+    //     board.orientation( $(this).data('color') );
+    //     board.start();
+    //     if($(this).data('color') == 'black'){
+    //         $('.notification')
+    //         .html('<div class="alert alert-success">Great ! Let\'s start game. You choose Black. Wait for White Move.</div>');
+    //     }else{
+    //         $('.notification')
+    //         .html('<div class="alert alert-success">Great ! Let\'s start game. You choose White. Start with First Move.</div>');
+    //     }
+    // });
+}
+
+
+
 

@@ -5,10 +5,14 @@ window.onload = function () {
     initGame();
 };
 
+
+
 var initGame = function() {
-   var cfg = {
+
+  var cfg = {
     draggable: true,
     position: 'start',
+    sparePieces: true,
     onDragStart: onDragStart,
     onDrop: handleMove,
     onMouseoutSquare: onMouseoutSquare,
@@ -17,6 +21,7 @@ var initGame = function() {
    };
    board = new ChessBoard('myBoard', cfg);
    game = new Chess();
+  
 };
 
 var handleMove = function(source, target ) {
@@ -34,7 +39,17 @@ var handleMove = function(source, target ) {
     var move = game.move({from: source, to: target});
     
     if (move === null)  return 'snapback';
-    else socket.emit('move', move);
+   // else socket.emit('move', move);
+
+
+   /////saurav
+   else socket.emit('chessMove', {
+    from: source,
+    to: target
+
+   });
+
+
     
 };
 
@@ -116,3 +131,44 @@ function onMouseoutSquare (square, piece) {
 function onSnapEnd () {
   board.position(game.fen())
 }
+
+
+
+
+
+
+
+/////////////////experiment
+
+
+
+
+socket.on('setOrientationOppnt', (requestData) => {
+  console.log("oooooooooooooo"+ requestData);
+  console.log(requestData)
+  if(requestData.color=="white"){
+    cfg.orientation= 'black'
+  }else{
+    cfg.orientation= 'white'
+  }
+
+   
+  
+  
+});
+
+socket.on('oppntChessMove', (requestData) => {
+  console.log(requestData);
+  // let color = requestData.color;
+  let source = requestData.from;
+  let target = requestData.to;
+  let promo = requestData.promo||'';
+
+
+  // chess.move({from:source,to:target,promotion:promo});
+  // board.position(chess.fen());
+  //chess.move(target);
+  //chess.setFenPosition();
+
+});
+
