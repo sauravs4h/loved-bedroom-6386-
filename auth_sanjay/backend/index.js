@@ -3,7 +3,8 @@ const cors=require("cors")
 const app=express();
 const {connection}=require("./configs/db");
 const {userRouter}=require("./routes/user.route");
-const {authenticate}=require("./middlewares/authenticaton")
+const {authenticate}=require("./middlewares/authenticaton");
+
 require("dotenv").config();
 
 app.use(express.json())
@@ -20,6 +21,8 @@ app.use("/user",userRouter)
 app.get("/chesspage",authenticate,(req,res)=>{
     res.send("chess page");
 })
+
+
 const port=4000;
 
 app.listen(port,async()=>{

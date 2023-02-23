@@ -19,8 +19,10 @@ async function login(obj){
         })
         if(login_data.ok){
             let token=await login_data.json();
-            localStorage.setItem("auth_token",JSON.stringify(token.token));
+            localStorage.setItem("auth_token",token.token);
+            
             alert("login successfull");
+            window.location.href="userprofile.html"
         }else{
             alert("wrong credentials")
         }
