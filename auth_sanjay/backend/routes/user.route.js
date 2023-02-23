@@ -3,6 +3,14 @@ const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const{Usermodel}=require("../models/user.model");
 const userRouter=express.Router();
+const {authenticate}=require("../middlewares/authenticaton");
+const multer=require("multer");
+const app=express();
+const redis=require("redis");
+const client=redis.createClient();
+client.on("err",(err)=>console.log("redis client error"));
+
+client.connect();
 // const redis=require("redis");
 // const authenticate=require("../middlewares/authenticate.middleware");
 // var cookieParser = require('cookie-parser');
@@ -14,9 +22,13 @@ const fs=require("fs")
 // Client.connect();
 userRouter.post("/register",async (req,res)=>{
     
-    let  {userName,email,password,status}=req.body;
+    let  {userName,email,password,status,img}=req.body;
     if(!status){
         status=false
+    }
+    let imgobj={
+        data:"",
+        contentType: "image/png"
     }
     try {
         bcrypt.hash(password,5,async(err,secure_password)=>{
@@ -24,7 +36,7 @@ userRouter.post("/register",async (req,res)=>{
                 console.log(err);
             }
             else{
-                const user=new Usermodel({userName,email,password:secure_password,status});
+                const user=new Usermodel({userName,email,password:secure_password,status,img:imgobj});
                 await user.save();
                 res.send({"msg":"User Registered"});
             }
@@ -62,6 +74,8 @@ userRouter.post("/login",async(req,res)=>{
         console.log("something went wrong");
     }
 })
+
+
 // userRouter.get("/getnewtoken",async(req,res)=>{
 //     const refreshtoken=await Client.GET("refreshtoken");
 //     if(!refreshtoken){
@@ -78,6 +92,72 @@ userRouter.post("/login",async(req,res)=>{
 //         }
 //     })
 // })
+
+userRouter.get("/getuserdetail",authenticate,async(req,res)=>{
+    let userId=req.body.userId;
+    await client.set("id",userId);
+    try {
+        let userData=await Usermodel.findOne({_id:userId});
+        res.send(userData);
+    } catch (error) {
+        console.log(error);
+        console.log("something went wrong");
+    }
+})
+
+
+const path = require('path');
+const storage = multer.diskStorage({
+    destination: 'uploads/',
+    filename: function(req, file, cb){
+      cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  const upload = multer({
+    storage: storage,
+    // limits:{fileSize: 1000000},
+    // fileFilter: function(req, file, cb){
+    //   checkFileType(file, cb);
+    // }
+  }).single('myImage');
+
+  userRouter.post('/upload',async(req, res) => {
+    let userId=await client.get("id");
+    upload(req, res, async(err) => {
+        if(err){
+          console.log(err);
+        } else {
+            const saveImage =  {
+                          data: fs.readFileSync("uploads/" + req.file.filename),
+                          contentType: "image/png",
+                        }
+                    // console.log(saveImage.data);
+                    await client.set("imgdata",JSON.stringify(saveImage));
+                    // console.log(JSON.parse(imgdata))
+             }
+      });
+  });
+    // console.log(obj)
+    
+    userRouter.patch("/updateuser",async(req,res)=>{
+    let imgdata=await client.get("imgdata")
+        let userId=await client.get("id");
+        let stringified_data=JSON.parse(imgdata);
+    // console.log(userId)
+        try {
+            let final_data={
+                data: Buffer.from(stringified_data.data.data),
+                contentType: "image/png",
+            }
+            // console.log(final_data);
+            await Usermodel.findByIdAndUpdate({_id:userId},{img:final_data});
+            // res.send(stringified_data)
+            res.send({"msg":"Updated the userimg","data":final_data});
+        } catch (error) {
+            console.log(error);
+            console.log("something went wrong");
+        }
+    })
 userRouter.get("/logout",async(req,res)=>{
     const token=req.headers.authorization;
     // await Client.rPush("blacklist",token);
@@ -86,6 +166,8 @@ userRouter.get("/logout",async(req,res)=>{
     fs.writeFileSync("./blacklist.json",JSON.stringify(blacklisteddata));
     res.send({"msg":"Logged out successfully"});
 })
+
+
 module.exports={
     userRouter
 }
