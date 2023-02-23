@@ -1,11 +1,7 @@
-
-
 var board;
 var game;
 
 let roomidd;
-
-
 socket.on("ooproom",(data)=>{
   roomidd=data;
   console.log("------------"+data);
@@ -15,15 +11,15 @@ window.onload = function () {
     initGame();
 };
 
-
-
 var initGame = function() {
 
   var cfg = {
     draggable: true,
+    showNotation: false,
     position: 'start',
-    sparePieces: true,
-    showNotation: true,
+    moveSpeed: 'slow',
+    snapbackSpeed: 500,
+    snapSpeed: 100,
     onDragStart: onDragStart,
     onDrop: handleMove,
     onMouseoutSquare: onMouseoutSquare,
@@ -50,19 +46,8 @@ var handleMove = function(source, target ) {
     var move = game.move({from: source, to: target});
     
     if (move === null)  return 'snapback';
-    else socket.emit('move', move);
-
-
-   /////saurav
-
-
-   
-
-   
-   
-    socket.emit('chessMove', {
-    
-             room: roomidd,
+    else socket.emit('move', {
+            room: roomidd,
             // color: turn, 
             from: move.from, 
             to: move.to,
@@ -71,7 +56,15 @@ var handleMove = function(source, target ) {
    });
 
 
-    
+   /////saurav   
+  //   socket.emit('chessMove', {
+  //           room: roomidd,
+  //           // color: turn, 
+  //           from: move.from, 
+  //           to: move.to,
+  //           piece: move.piece
+
+  //  });    
 };
 
 
@@ -124,11 +117,6 @@ function onDrop (source, target) {
 
   // illegal move
   if (move === null) return 'snapback'
-
-
-
-  
-
       //   socket.emit('chessMove', { 
       //     room: roomidd,
            
@@ -236,3 +224,10 @@ socket.on('oppntChessMove', (requestData) => {
 
 });
 
+$('#ruyLopezBtn').on('click', function () {
+  board.position('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R')
+})
+$('#clearBoardBtn').on('click', ()=>{
+  board.clear(false)
+})
+$('#startBtn').on('click', initGame)

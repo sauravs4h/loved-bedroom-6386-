@@ -52,12 +52,7 @@ const socketserver=(io)=>{
                 
             });
 
-            socket.broadcast.to(requestData).emit('ooproom', room);
-
-
-
-
-           
+            socket.broadcast.to(requestData).emit('ooproom', room);  
             
         });
 
@@ -73,8 +68,9 @@ const socketserver=(io)=>{
             });
         })
 
-        socket.on('chessMove', (requestData) => {
+        socket.on('move', (requestData) => {
             console.log(requestData);
+            socket.broadcast.emit('move', requestData);
             socket.broadcast.to(requestData.room).emit('oppntChessMove',{
                 // color: requestData.color,
                 from: requestData.from,
@@ -84,7 +80,6 @@ const socketserver=(io)=>{
 
             });
         });
-
     })
 }
 module.exports={socketserver}
