@@ -3,7 +3,7 @@
   <head>
     <title>Realtime_chess</title>
     <link rel="stylesheet" href="lib/chessboard-0.3.0.min.css" />
-    <link rel="stylesheet" href="./join.css">
+    <link rel="stylesheet" href="./join.css" />
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <style>
@@ -14,25 +14,15 @@
       justify-content: center;
       height: 100vh;
     }
-    
 
     #gameBoard {
       width: 30%;
     }
   </style>
   <body>
+    <div id="names"></div>
 
-    <div id="names">
-
-
-    </div>
-    
-    <div id="notification">
-        
-    </div>
-
-
-
+    <div id="notification"></div>
 
     <div id="myBoard" style="width: 400px"></div>
     <button id="ruyLopezBtn">Ruy Lopez</button>
@@ -45,6 +35,5 @@
 <script src="lib/chess.min.js"></script>
 <script src="lib/chessboard-0.3.0.min.js"></script>
 <script src="lib/jquery-1.11.1.js"></script>
-
 
 <script src="/client.js"></script>
