@@ -3,8 +3,8 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid")
 
 const mypeer = new Peer({
-    host : "/",
-    port : '5051'
+  host: "/",
+  port: '5051'
 })
 
 
@@ -20,7 +20,7 @@ document.getElementById('playaudion').play();
 const myvideo = document.createElement("video");
 myvideo.setAttribute("class", "democlass");
 const vid = document.querySelector(".democlass")
-myvideo.muted=true;
+myvideo.muted = true;
 
 const peers = {}
 
@@ -36,63 +36,63 @@ const user = prompt("Enter your name");
 /* <button onclick="muteit()">mute</button>
 <button onclick="startit()">start video</button> */
 
-   let myVideoStream;
-    navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio : true
-    }).then(stream =>{
-        myVideoStream=stream
-        addvideoStream(myvideo,stream)
-    
-        mypeer.on('call', call =>{
-            call.answer(stream)
-    
-            const video = document.createElement("video");
-            call.on('stream',userVideoStream=>{
-                addvideoStream(video,userVideoStream)
-            })
-        })
-    
-        socket.on('user-connected',userId=>{
-            connectToNewUser(userId , stream)
-        })
+let myVideoStream;
+navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: true
+}).then(stream => {
+  myVideoStream = stream
+  addvideoStream(myvideo, stream)
+
+  mypeer.on('call', call => {
+    call.answer(stream)
+
+    const video = document.createElement("video");
+    call.on('stream', userVideoStream => {
+      addvideoStream(video, userVideoStream)
     })
+  })
+
+  socket.on('user-connected', userId => {
+    connectToNewUser(userId, stream)
+  })
+})
 
 
 
 
- socket.on("user-disconnected",userId =>{
-    if (peers[userId]) peers[userId].close()
- })
+socket.on("user-disconnected", userId => {
+  if (peers[userId]) peers[userId].close()
+})
 
-mypeer.on('open', id =>{
-    socket.emit('join-room',ROOM_ID , id,user)
+mypeer.on('open', id => {
+  socket.emit('join-room', ROOM_ID, id, user)
 })
 
 
 //To connect to new user funcrion
-function connectToNewUser(userId,stream){
-    const call = mypeer.call(userId,stream)
-    const video = document.createElement('video')
-    call.on('stream', userVideoStream =>{
-        addvideoStream(video, userVideoStream)
-    })
-    call.on('close',()=>{
-        video.remove()
-    })
+function connectToNewUser(userId, stream) {
+  const call = mypeer.call(userId, stream)
+  const video = document.createElement('video')
+  call.on('stream', userVideoStream => {
+    addvideoStream(video, userVideoStream)
+  })
+  call.on('close', () => {
+    video.remove()
+  })
 
-    peers[userId] = call
+  peers[userId] = call
 }
 console.log(peers)
 
 
 //Video stream adding funcrion
-function addvideoStream(video,stream){
-    video.srcObject = stream
-    video.addEventListener('loadedmetadata',()=>{
-        video.play()
-    })
-    videoGrid.append(video)
+function addvideoStream(video, stream) {
+  video.srcObject = stream
+  video.addEventListener('loadedmetadata', () => {
+    video.play()
+  })
+  videoGrid.append(video)
 }
 
 
@@ -156,8 +156,8 @@ socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
     messages.innerHTML +
     `<div class="message">
-        <span ${userName===user ? "class=outgoing" 
-       : "class=incoming"}>${message}  <span class="time">   (From ${userName} ${cur_time}) <span></span>
+        <span ${userName === user ? "class=outgoing"
+      : "class=incoming"}>${message}  <span class="time">   (From ${userName} ${cur_time}) <span></span>
        
     </div>`;
 });
