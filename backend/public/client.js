@@ -169,6 +169,13 @@ $(document).on('click', '.setOrientation', function () {
 
   roomidd = $(this).data('room')
 
+
+  let notidiv=document.getElementById("notification");
+  notidiv.innerHTML="";
+
+  roomidd=$(this).data('room')
+        
+
   socket.emit('setOrientation', {
     room: $(this).data('room'),
     color: ($(this).data('color') === 'black') ? 'white' : 'black'

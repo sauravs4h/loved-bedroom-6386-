@@ -10,12 +10,14 @@ const socketserver = (io) => {
     io.on("connection", (socket) => {
         console.log("client is connected");
 
-        socket.on("username", (name) => {
 
-            let username = name;
-            let room = uid(10)
+        socket.on("username",(name)=>{
+            
+            let username=name;
+            let room=uid(10)
+       
+            const user={
 
-            const user = {
                 id: socket.id,
                 name: username,
                 room: room
@@ -30,7 +32,11 @@ const socketserver = (io) => {
         });
 
         socket.on('sendJoinRequest', (requestData) => {
-            let user = users.filter(user => user.id == socket.id)[0];
+
+
+            let user = users.filter(user=>user.id == socket.id)[0];
+
+
             socket.broadcast.to(requestData.room).emit('joinRequestRecieved', {
                 id: user.id,
                 name: user.name,
@@ -82,4 +88,6 @@ const socketserver = (io) => {
         });
     })
 }
-module.exports = { socketserver }
+
+module.exports={socketserver}
+
