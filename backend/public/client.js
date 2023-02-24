@@ -167,6 +167,9 @@ function onSnapEnd () {
 
 $(document).on('click', '.setOrientation', function(){
 
+  let notidiv=document.getElementById("notification");
+  notidiv.innerHTML="";
+
   roomidd=$(this).data('room')
         
   socket.emit('setOrientation', {

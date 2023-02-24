@@ -30,7 +30,9 @@ const socketserver=(io)=>{
         });
         
         socket.on('sendJoinRequest', (requestData) => {
+
             let user = users.filter(user=>user.id == socket.id)[0];
+
             socket.broadcast.to(requestData.room).emit('joinRequestRecieved', {
                 id: user.id,
                 name: user.name,

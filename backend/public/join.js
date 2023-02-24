@@ -32,11 +32,12 @@ let notidiv=document.getElementById("notification");
 
 function sendrequest(el){
     socket.emit('sendJoinRequest',el);
-    notidiv.innerHTML="";
-    let sentnote=document.createElement("p");
-    sentnote.innerText="request has been sent";
+    // notidiv.innerHTML="";
+    // let sentnote=document.createElement("p");
+    // sentnote.innerText="request has been sent";
+    alert("request has been sent")
 
-    notidiv.append(sentnote)
+    // notidiv.append(sentnote)
 }
 
 
@@ -47,11 +48,21 @@ socket.on('joinRequestRecieved', (userData) => {
     let notification=document.createElement("p")
     let joinbutton=document.createElement("button");
     notification.innerText=`Recieved a game request from ${userData.name}`
+
+    
     joinbutton.innerText="join"
+
+
     joinbutton.addEventListener("click",()=>{
+
         acceptrequest(userData)
     })
     notidiv.append(notification,joinbutton)
+
+
+
+
+
     // console.log(userData);
     // $('.notification')
     // .html('<div class="alert alert-success">Recieved a game request from <strong>'+userData.name+'</strong>. <button data-room="'+userData.room+'" class="btn btn-primary btn-sm acceptGameRequest">Accept</button></div>')
@@ -65,10 +76,11 @@ function acceptrequest(userData){
     socket.emit('acceptGameRequest', room);
 
     notidiv.innerHTML="";
-    let sentnote=document.createElement("p");
-    sentnote.innerText="Please wait for game initialize from host";
+    // let sentnote=document.createElement("p");
+    // sentnote.innerText="Please wait for game initialize from host";
+    alert("Please wait for game initialize from host")
 
-    notidiv.append(sentnote)
+    // notidiv.append(sentnote)
 
 
 }
