@@ -6,11 +6,24 @@ const userRouter=express.Router();
 const {authenticate}=require("../middlewares/authenticaton");
 const multer=require("multer");
 const app=express();
-const redis=require("redis");
-const client=redis.createClient();
-client.on("err",(err)=>console.log("redis client error"));
+const redis = require('ioredis');
+const redisClient = redis.createClient({host:'redis-11809.c256.us-east-1-2.ec2.cloud.redislabs.com',
+                                        port:"11809",
+                                        username:"default",
+                                        password:'ynHf48XJCqLzzxdG4qLiRc8u8A6EVt0W'});
 
-client.connect();
+redisClient.on('connect',() => {
+    console.log('connected to redis successfully!');
+})
+
+redisClient.on('error',(error) => {
+    console.log('Redis connection error :', error);
+})
+// const redis=require("redis");
+// const client=redis.createClient();
+// client.on("err",(err)=>console.log("redis client error"));
+
+// client.connect();
 // const redis=require("redis");
 // const authenticate=require("../middlewares/authenticate.middleware");
 // var cookieParser = require('cookie-parser');
@@ -122,7 +135,7 @@ const storage = multer.diskStorage({
   }).single('myImage');
 
   userRouter.post('/upload',async(req, res) => {
-    let userId=await client.get("id");
+    // let userId=await client.get("id");
     upload(req, res, async(err) => {
         if(err){
           console.log(err);
@@ -132,7 +145,7 @@ const storage = multer.diskStorage({
                           contentType: "image/png",
                         }
                     // console.log(saveImage.data);
-                    await client.set("imgdata",JSON.stringify(saveImage));
+                    await client.set("imgdata",JSON.stringify(saveImage));z
                     // console.log(JSON.parse(imgdata))
              }
       });
@@ -158,16 +171,18 @@ const storage = multer.diskStorage({
             console.log("something went wrong");
         }
     })
-userRouter.get("/logout",async(req,res)=>{
+userRouter.get("/logout",authenticate,async(req,res)=>{
     const token=req.headers.authorization;
-    // await Client.rPush("blacklist",token);
-    const blacklisteddata=JSON.parse(fs.readFileSync("./blacklist.json","utf-8"));
-    blacklisteddata.push(token);
-    fs.writeFileSync("./blacklist.json",JSON.stringify(blacklisteddata));
+    // console.log(token)
+    await redisClient.rpush("blacklistToken",token)
+    // const blacklisteddata=JSON.parse(fs.readFileSync("./blacklist.json","utf-8"));
+    // blacklisteddata.push(token);
+    // fs.writeFileSync("./blacklist.json",JSON.stringify(blacklisteddata));
     res.send({"msg":"Logged out successfully"});
 })
 
 
 module.exports={
-    userRouter
+    userRouter,
+    redisClient
 }
