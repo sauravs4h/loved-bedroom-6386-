@@ -11,7 +11,7 @@ const socketserver=(io)=>{
         console.log("client is connected");
 
         socket.on("username",(name)=>{
-
+            
             let username=name;
             let room=uid(10)
        
