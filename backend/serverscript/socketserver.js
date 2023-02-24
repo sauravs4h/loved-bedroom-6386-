@@ -1,21 +1,21 @@
 const { uid } = require('uid');
-let users=[];
+let users = [];
 
 
-const {redis}=require("../servise/redis");
+const { redis } = require("../servise/redis");
 
 
-const socketserver=(io)=>{
-    
-    io.on("connection",(socket)=>{
+const socketserver = (io) => {
+
+    io.on("connection", (socket) => {
         console.log("client is connected");
 
-        socket.on("username",(name)=>{
+        socket.on("username", (name) => {
 
-            let username=name;
-            let room=uid(10)
-       
-            const user={
+            let username = name;
+            let room = uid(10)
+
+            const user = {
                 id: socket.id,
                 name: username,
                 room: room
@@ -24,13 +24,13 @@ const socketserver=(io)=>{
             users.push(user)
 
             socket.join(room);
-         //   console.log(users)
+            //   console.log(users)
             io.emit("roomDetail", users);
 
         });
-        
+
         socket.on('sendJoinRequest', (requestData) => {
-            let user = users.filter(user=>user.id == socket.id)[0];
+            let user = users.filter(user => user.id == socket.id)[0];
             socket.broadcast.to(requestData.room).emit('joinRequestRecieved', {
                 id: user.id,
                 name: user.name,
@@ -38,53 +38,48 @@ const socketserver=(io)=>{
             });
         });
         socket.on('acceptGameRequest', (requestData) => {
-           // 
-            let user = users.filter(user=>user.id == socket.id)[0];
-            let room=user.room
+            // 
+            let user = users.filter(user => user.id == socket.id)[0];
+            let room = user.room
 
-            console.log("b"+room)
-           
+            console.log("b" + room)
+
             socket.broadcast.to(requestData).emit('gameRequestAccepted', {
                 id: user.id,
                 name: user.name,
                 room: user.room,
 
-                
+
             });
 
             socket.broadcast.to(requestData).emit('ooproom', room);
 
-
-
-
-           
-            
         });
 
-        socket.on("setOrientation",(data)=>{
-            let user = users.filter(user=>user.id == socket.id)[0];
+        socket.on("setOrientation", (data) => {
+            let user = users.filter(user => user.id == socket.id)[0];
 
-         //   console.log(user)
+            //   console.log(user)
             socket.broadcast.to(data.room).emit('setOrientationOppnt', {
-                color:data.color,
+                color: data.color,
                 id: user.id,
                 name: user.name,
                 room: user.room,
             });
         })
 
-        socket.on('chessMove', (requestData) => {
+        socket.on('move', (requestData) => {
             console.log(requestData);
-            socket.broadcast.to(requestData.room).emit('oppntChessMove',{
+            socket.broadcast.emit('move', requestData);
+            socket.broadcast.to(requestData.room).emit('oppntChessMove', {
                 // color: requestData.color,
                 from: requestData.from,
                 to: requestData.to,
                 piece: requestData.piece,
-                promo: requestData.promo||''
+                promo: requestData.promo || ''
 
             });
         });
-
     })
 }
-module.exports={socketserver}
+module.exports = { socketserver }

@@ -7,7 +7,7 @@ The dependences need to installed
  
 we have to install peers.js for creating ids for webrts which will mange lot of tasks itself
 -> npm i -g peers
-->To start the peers server ------> peersjs --port 5051
+->To start the peers server ------> peerjs --port 5051
 
 -> to connect with the peer => const mypeer = new Peer(undefined, {
                                     host : "/",

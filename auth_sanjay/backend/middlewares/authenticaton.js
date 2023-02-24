@@ -1,3 +1,4 @@
+
 const jwt=require("jsonwebtoken");
 const fs=require("fs");
 // const {redisClient}=require("../routes/user.route")
@@ -12,11 +13,16 @@ redisClient.on('connect',() => {
 })
 
 const authenticate=async (req,res,next)=>{
+
+
+
+
     // const token =req.headers.authorization?.split(" ")[1];
-    const token =req.headers.authorization;
-    if(!token){
-        res.send({"msg":"login again"})
+    const token = req.headers.authorization;
+    if (!token) {
+        res.send({ "msg": "login again" })
     }
+
     let blacklisteddata=await redisClient.lrange("blacklistToken",0,-1);
 
     if(blacklisteddata.includes(token)){
@@ -33,13 +39,12 @@ const authenticate=async (req,res,next)=>{
                 res.send({"msg":"Pls login again","err":err.message});
             }else{
                 req.body.userId=decoded.userID;
+ 
                 next();
             }
         })
     }
-    
+
 }
 
-module.exports={
-    authenticate
-}
+module.exports = { authenticate }
