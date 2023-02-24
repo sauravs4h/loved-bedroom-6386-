@@ -1,8 +1,8 @@
 const Redis = require("ioredis");
 
 
-const redis=new Redis({
-    port: 10314, 
+const redis = new Redis({
+  port: 10314,
   host: "redis-10314.c305.ap-south-1-1.ec2.cloud.redislabs.com",
   username: "default", // needs Redis >= 6
   password: "eyCxn7NjGqKoeJT8lTwC4wn0UKt16lvf",
@@ -10,4 +10,4 @@ const redis=new Redis({
 })
 
 
-module.exports={redis}
+module.exports = { redis }

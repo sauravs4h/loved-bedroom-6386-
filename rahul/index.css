@@ -1,40 +1,39 @@
 .square {
-    background-color: #ebecd0;
-    width: 70px;
-    height: 70px;
-  }
-  .dad-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  .main-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    height: 560px;
-    width: 560px;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  .files:nth-of-type(odd) .square:nth-of-type(even) {
-    background-color: #779556;
-  }
-  .files:nth-of-type(even) .square:nth-of-type(odd) {
-    background-color: #779556;
-  }
-  img {
-    width: 100%;
-  }
-  .circle {
-    width: 30%;
-    height: 30%;
-    background-color: #d6d6bd;
-    border-radius: 50%;
-  }
-  .flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  background-color: #ebecd0;
+  width: 70px;
+  height: 70px;
+}
+.dad-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  height: 560px;
+  width: 560px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.files:nth-of-type(odd) .square:nth-of-type(even) {
+  background-color: #779556;
+}
+.files:nth-of-type(even) .square:nth-of-type(odd) {
+  background-color: #779556;
+}
+img {
+  width: 100%;
+}
+.circle {
+  width: 30%;
+  height: 30%;
+  background-color: #d6d6bd;
+  border-radius: 50%;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
