@@ -1,80 +1,82 @@
-*{
-    margin: 0;
+* {
+  margin: 0;
 }
 
-body{
-    
-    background-image: url('../img/backimg.webp');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+body {
+  background-image: url("../img/backimg.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: 100% 100%;
 }
-header{
-    border: 1px solid white;
-    width: 100%;
-    color: red;
-    text-align: center;
-    padding: 10px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 800;
+header {
+  border: 1px solid white;
+  width: 100%;
+  color: red;
+  text-align: center;
+  padding: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
 }
-#infoheader{
-    color: red;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 800;
-    width: 98%;
-    margin: auto;
-    margin-top: 10px;
+#infoheader {
+  color: red;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+  width: 98%;
+  margin: auto;
+  margin-top: 10px;
 }
 
-.personalinfo{
-    border:1px solid white;
-    width: 98%;
-    margin: auto;
-    border-radius: 5px;
-    margin-top: 5px;
-    background-color: white;
-    height: auto;
+.personalinfo {
+  border: 1px solid white;
+  width: 98%;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: white;
+  height: auto;
 }
-.imageupload{
-    /* width: 98%; */
-    margin-top: 20px;
-    display: block;
-    text-align: center;
+.imageupload {
+  /* width: 98%; */
+  margin-top: 20px;
+  display: block;
+  text-align: center;
 }
-.personalinfo>div{
-    border: 1px solid rgb(180, 171, 171);
-    width: 100%;
+.personalinfo > div {
+  border: 1px solid rgb(180, 171, 171);
+  width: 100%;
 }
-.personalinfo>div:nth-child(1){
-    display: flex;
+.personalinfo > div:nth-child(1) {
+  display: flex;
 }
-.personalinfo>div:nth-child(1)>div:nth-child(1){
-    width: 8%;
-    /* text-align: center; */
-    padding: 10px;
-    background-color:rgb(231, 226, 226) ;
+.personalinfo > div:nth-child(1) > div:nth-child(1) {
+  width: 8%;
+  /* text-align: center; */
+  padding: 10px;
+  background-color: rgb(231, 226, 226);
 }
-.personalinfo>div:nth-child(1)>div:nth-child(2){
-    padding: 10px;
+.personalinfo > div:nth-child(1) > div:nth-child(2) {
+  padding: 10px;
 }
-.personalinfo>div:nth-child(2),.personalinfo>div:nth-child(3){
-    display: flex;
+.personalinfo > div:nth-child(2),
+.personalinfo > div:nth-child(3) {
+  display: flex;
 }
-.personalinfo>div:nth-child(2)>div:nth-child(1),.personalinfo>div:nth-child(3)>div:nth-child(1){
-    width: 8%;
-    padding: 10px;
-    background-color:rgb(231, 226, 226) ;
+.personalinfo > div:nth-child(2) > div:nth-child(1),
+.personalinfo > div:nth-child(3) > div:nth-child(1) {
+  width: 8%;
+  padding: 10px;
+  background-color: rgb(231, 226, 226);
 }
-.personalinfo>div:nth-child(2)>div:nth-child(2),.personalinfo>div:nth-child(3)>div:nth-child(2){
-    padding: 10px;
+.personalinfo > div:nth-child(2) > div:nth-child(2),
+.personalinfo > div:nth-child(3) > div:nth-child(2) {
+  padding: 10px;
 }
-#uploadimage{
-    margin-top: 10px;
+#uploadimage {
+  margin-top: 10px;
 }
-#uploadimage>input:nth-child(1){
-    width: 85px;
+#uploadimage > input:nth-child(1) {
+  width: 85px;
 }
-.imageupload2>img{
-    width: 150px;
+.imageupload2 > img {
+  width: 150px;
 }
