@@ -82,6 +82,21 @@ const socketserver=(io)=>{
 
             });
         });
+
+        
+
+
+
+        socket.on('disconnect', () => {
+            for(i = 0; i< users.length; i++){
+                if(users[i].id == socket.id){
+                    users.splice(i,1);
+                    break;
+                }
+            }
+            io.emit("roomDetail", users);
+        });
+
     })
 }
 module.exports={socketserver}

@@ -205,17 +205,6 @@ socket.on('setOrientationOppnt', (requestData) => {
 });
 
 
-
-
-// socket.on('setOrientationOppnt', (requestData) => {
-//   console.log("oooooooooooooo"+ requestData);
-//   // board.orientation(requestData.color)
-
-   
-  
-  
-// });
-
 socket.on('oppntChessMove', (requestData) => {
  // console.log(requestData);
   // let color = requestData.color;
