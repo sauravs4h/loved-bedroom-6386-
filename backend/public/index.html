@@ -22,6 +22,9 @@
     #gameBoard {
       width: 40%;
     }
+    .main__right{
+      border-radius: 5px;
+    }
   </style>
   <body>
 
@@ -38,7 +41,7 @@
       <div id="leftcon">
         <img class="logoimage" src="./img/chesspieces/wikipedia/logo.png" alt="logo">
         <div class="main__right">
-          <div class="main__chat_window">
+          <div class="main__chat_window" style= "height: 300px; width: 450px; overflow-y: scroll;" id="scroll">
             <div class="messages"></div>
           </div>
           <div class="main__message_container">
