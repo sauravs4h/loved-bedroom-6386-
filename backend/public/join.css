@@ -196,8 +196,11 @@ video {
   display: flex;
   flex-direction: column;
   flex: 0.295;
-  background-color: rgb(231, 227, 227);
-  background-image: url("https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg");
+  /* background-color: rgb(231, 227, 227); */
+  background-color: rgb(45, 44, 44);
+  color: white;
+  background-image: url("./img/chesspieces/wikipedia/black_sky.jpg");
+  /* background-image: url("https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg"); */
 }
 .main__chat_window {
   flex-grow: 1;
