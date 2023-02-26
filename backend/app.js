@@ -1,5 +1,11 @@
 var express = require('express');
+var cors = require('cors')
 var app = express();
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.static('public'));
 var http = require('http').Server(app);
 var port = process.env.PORT || 3000;
@@ -8,6 +14,7 @@ var port = process.env.PORT || 3000;
 app.get("/",(req,res)=>{
   return res.send("welcome to chess game")
 })
+
 
 // app.use("/chess",express.static('public'));
 
