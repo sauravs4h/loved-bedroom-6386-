@@ -4,10 +4,16 @@ app.use(express.static('public'));
 var http = require('http').Server(app);
 var port = process.env.PORT || 3000;
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/index.html');
-});
 
+app.get("/",(req,res)=>{
+  return res.send("welcome to chess game")
+})
+
+// app.use("/chess",express.static('public'));
+
+// app.get('/chess', function (req, res) {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
 
 
 var io = require('socket.io')(http);
@@ -25,7 +31,7 @@ socketserver(io);
 
 
 http.listen(port, function () {
-  console.log('listening on port: ' + port);
+  console.log('listening u on port: ' + port);
 });
 
 // io.on('connection', function (socket) {
