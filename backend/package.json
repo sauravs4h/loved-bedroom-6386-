@@ -10,9 +10,11 @@
   "author": "Yaksh Chopra",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "ioredis": "^5.3.1",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "socket.io": "^2.5.0",
     "uid": "^2.0.1"
   }
