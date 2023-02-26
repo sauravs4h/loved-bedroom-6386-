@@ -1,8 +1,97 @@
-#names {
+/* #names {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: end;
   border: 1px solid red;
+} */
+
+
+body{
+  /* background-color: #4a154b; */
+  background-color: black;
+}
+button{
+  background-color: #b58863;
+ 
+}
+
+#container{
+  width: 60%;
+  height: 150%;
+  display: flex;
+  margin-left: 30%;
+  justify-content: space-between;
+  padding: 50px;
+  /* border: 1px solid red; */
+  
+}
+
+#mid{
+  /* border: 3px solid blue; */
+  height: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+#notification{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+  /* height: 10%; */
+  margin-left: 33%;
+  width: 29%;
+  font-size:large;
+  /* border: 1px solid green; */
+  /* background-color: greenyellow; */
+}
+
+.joinbutton{
+  width: 30%;
+  
+  margin: auto;
+  padding: 10px;
+}
+
+.btn{
+  width: 15%;
+  padding: 10px;
+}
+
+
+#players{
+  color: white;
+}
+
+#boardbutton{
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid white; */
+  height: 10%;
+}
+
+#boardbutton>button{
+  height: 100%;
+  width: 30%;
+}
+
+
+
+.playerhead{
+  
+  padding: 20px;
+  background-color: #b58863;
+}
+
+#names>h3{
+  border: 1px solid white;
+  background-color: #f0d9b5;
+  color: black;
+  text-align: center;
 }

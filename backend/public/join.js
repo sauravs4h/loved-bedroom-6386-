@@ -1,3 +1,4 @@
+// const socketa = io("http://localhost:3000/", { transports: ["websocket"] })
 const socket = io("http://localhost:3000/", { transports: ["websocket"] })
 
 
@@ -52,7 +53,8 @@ socket.on('joinRequestRecieved', (userData) => {
     notification.innerText=`Recieved a game request from ${userData.name}`
 
     
-    joinbutton.innerText="join"
+    joinbutton.innerText="join";
+    joinbutton.classList.add("joinbutton")
 
 
     joinbutton.addEventListener("click",()=>{

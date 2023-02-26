@@ -2,14 +2,13 @@ const { uid } = require('uid');
 let users = [];
 
 
-const { redis } = require("../servise/redis");
+
 
 
 const socketserver = (io) => {
 
     io.on("connection", (socket) => {
         console.log("client is connected");
-
 
         socket.on("username",(name)=>{
             
