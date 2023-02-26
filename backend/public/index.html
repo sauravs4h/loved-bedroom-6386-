@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="lib/chessboard-0.3.0.min.css" />
     <link rel="stylesheet" href="./join.css" />
     <script src="/socket.io/socket.io.js"></script>
+    <script
+      src="https://kit.fontawesome.com/6614217c3b.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <style>
     /* body {
@@ -21,10 +25,8 @@
   </style>
   <body>
 
-    <div>
-      <img src="../logophoto/logo.png" alt="logo">
-    </div>
     
+  
 
     
     <div id="notification">
@@ -33,6 +35,25 @@
    
 
     <div id="container">
+      <div>
+        <img style="height: 200px; width: 200px;" src="./img/chesspieces/wikipedia/logo.png" alt="logo">
+        <div class="main__right">
+          <div class="main__chat_window">
+            <div class="messages"></div>
+          </div>
+          <div class="main__message_container">
+            <input
+              id="chat_message"
+              type="text"
+              autocomplete="off"
+              placeholder="Type message here..."
+            />
+            <div id="send" class="options__button">
+              <i class="fa fa-send-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
 
       
       
