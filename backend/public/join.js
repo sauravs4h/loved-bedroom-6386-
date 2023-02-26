@@ -1,10 +1,29 @@
+
+
 // const socketa = io("http://localhost:3000/", { transports: ["websocket"] })
 const socket = io("http://localhost:3000/", { transports: ["websocket"] })
 
 
 
 
-let username = prompt("Enter your name", "shaktiman");
+ let username = prompt("Enter your name", "a");
+
+//let username= JSON.parse(localStorage.getItem("name"));
+// let name= JSON.parse(localStorage.getItem("name"));
+
+// const array = document.cookie.split(';');
+
+//     const obj = {};
+//         array.forEach((elem) => {   // <-- looping on all cookies
+//           const a = elem.split('='); // <-- split each cookie to get key and value
+//          obj[a[0].trim()] = a[1].trim()   // <-- save on object to access using keys.
+//         })
+        
+//         box.innerHTML=JSON.stringify(obj)
+//         console.log(obj.token)
+//         console.log(obj.name)
+
+
 
 
 socket.emit("username", username)

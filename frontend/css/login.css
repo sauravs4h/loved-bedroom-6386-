@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-image: url("../img/backimg.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+header {
+  border: 1px solid white;
+  width: 100%;
+  color: red;
+  text-align: center;
+  padding: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+}
+.login {
+  border: 2px solid white;
+  width: 300px;
+  height: auto;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.inputlogin {
+  width: 200px;
+  height: 32px;
+  border-radius: 5px;
+  margin: 8px;
+  color: red;
+  padding-left: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+}
+.loginform {
+  margin-top: 10px;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+}
+#signinbtn {
+  padding: 5px 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+  color: red;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: rgb(213, 197, 197);
+}
+#signinbtn:hover {
+  background-color: rgb(232, 107, 107);
+  color: white;
+}
+hr {
+  width: 70%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#registerbtn {
+  padding: 5px 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: rgb(71, 107, 71);
+}
+#registerbtn:hover {
+  color: green;
+  background-color: white;
+}
