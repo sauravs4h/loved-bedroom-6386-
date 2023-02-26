@@ -28,7 +28,18 @@ const socketserver = (io) => {
             //   console.log(users)
             io.emit("roomDetail", users);
 
+
+            setTimeout(() => {
+                socket.broadcast.emit("user-connected", socket.id);
+              }, 1000);
+
+              socket.on("message", (message) => {
+                io.emit("createMessage", message, username);
+              });
+              
+
         });
+        
 
         socket.on('sendJoinRequest', (requestData) => {
 
