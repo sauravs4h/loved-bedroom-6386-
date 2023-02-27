@@ -70,31 +70,5 @@ async function login(obj) {
 
 
 
-// async function login(obj) {
-//     try {
-//         let login_data = await fetch(`${apiuser}login`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(obj)
-//         })
-//         if (login_data.ok) {
-//             let token = await login_data.json();
-//             localStorage.setItem("auth_token", token.token);
-
-//             alert("login successfull");
-//             window.location.href = "userprofile.html"
-//         } else {
-//             alert("wrong credentials")
-//         }
-//     }
-//     catch (err) {
-//         alert("wrong credentials")
-//         console.log("Some error");
-//     }
-// }
-
-
 
 
