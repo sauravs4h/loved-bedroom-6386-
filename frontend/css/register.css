@@ -61,7 +61,7 @@ header {
 input[type="radio"] {
   border: 1px solid #fff;
   padding: 0.5em;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   cursor: pointer;
 }
 input[type="radio"]:checked {

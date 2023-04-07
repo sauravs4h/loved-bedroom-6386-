@@ -245,3 +245,10 @@ video {
   width: 50px;
   margin: 0 0.5rem;
 }
+
+#gameBoard {
+  width: 40%;
+}
+.main__right{
+  border-radius: 5px;
+}
