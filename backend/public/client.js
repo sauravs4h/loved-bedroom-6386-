@@ -121,13 +121,6 @@ function onDrop(source, target) {
 
   // illegal move
   if (move === null) return 'snapback'
-  //   socket.emit('chessMove', { 
-  //     room: roomidd,
-
-  //     from: move.from, 
-  //     to: move.to,
-  //     // piece: move.piece
-  // });
 }
 
 function onMouseoverSquare(square, piece) {

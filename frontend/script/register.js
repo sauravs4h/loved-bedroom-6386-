@@ -31,8 +31,6 @@ async function register(obj) {
         let res=await response.json()
         console.log(res)
 
-        // {msg: 'signup successful', status: 'success'}
-
         if (res.status == "success") {
             alert("user has been succesfully created");
             window.location.href ="./login.html"

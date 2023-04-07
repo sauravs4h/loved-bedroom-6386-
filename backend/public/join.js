@@ -53,12 +53,7 @@ let notidiv = document.getElementById("notification");
 
 function sendrequest(el){
     socket.emit('sendJoinRequest',el);
-    // notidiv.innerHTML="";
-    // let sentnote=document.createElement("p");
-    // sentnote.innerText="request has been sent";
     alert("request has been sent")
-
-    // notidiv.append(sentnote)
 }
 
 
@@ -81,31 +76,15 @@ socket.on('joinRequestRecieved', (userData) => {
         acceptrequest(userData)
     })
     notidiv.append(notification,joinbutton)
-
-
-
-
-
-    // console.log(userData);
-    // $('.notification')
-    // .html('<div class="alert alert-success">Recieved a game request from <strong>'+userData.name+'</strong>. <button data-room="'+userData.room+'" class="btn btn-primary btn-sm acceptGameRequest">Accept</button></div>')
 });
 
 function acceptrequest(userData) {
-
-
-
     let room = userData.room
     socket.emit('acceptGameRequest', room);
 
 
     notidiv.innerHTML="";
-    // let sentnote=document.createElement("p");
-    // sentnote.innerText="Please wait for game initialize from host";
     alert("Please wait for game initialize from host")
-
-
-    // notidiv.append(sentnote)
 
 
 }
@@ -113,9 +92,6 @@ function acceptrequest(userData) {
 
 
 socket.on('gameRequestAccepted', (userData) => {
-
-    // let responce= await redis.set("buser",userData);
-    // console.log("ooooooooo", responce)
 
 
     notidiv.innerHTML = "";
@@ -136,7 +112,6 @@ socket.on('gameRequestAccepted', (userData) => {
 
 
 // code added by vamshi
-// send msg 
 let text = document.querySelector("#chat_message");
 let send = document.getElementById("send");
 let messages = document.querySelector(".messages");
