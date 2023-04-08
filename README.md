@@ -8,7 +8,6 @@
 
 ## 🏷️ What is Chess gaming?
 
-- An Orignal Web Project for playing chess.
 - Chess Gaming is an online web application for users to play multiplayer chess around the world.
 
 ---
@@ -49,15 +48,19 @@
 
 <br/>
 
-# Screenshots ✅
+# 🏷️Screenshots 
 
-## Main chess page
+### Main chess page
 ![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-03-27%20205944.png)
 
-## Getting request from user to play
+### Getting request from user to play
 ![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-04-08%20130044.png)
 
+### Choosing white or black rotation
+![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-04-08%20130056.png)
 
+### Sending messages through chat to the user
+![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-04-08%20130123.png)
 
 ## More Project Details :-
 
