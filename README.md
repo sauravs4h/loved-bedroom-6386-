@@ -51,7 +51,12 @@
 
 # Screenshots ✅
 
+## Main chess page
 ![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-03-27%20205944.png)
+
+## Getting request from user to play
+![png](https://github.com/sauravs4h/loved-bedroom-6386-/blob/main/frontend/img/Screenshot%202023-04-08%20130044.png)
+
 
 
 ## More Project Details :-
