@@ -20,19 +20,12 @@ button{
 #container{
   margin-top: 50px;
   width: 100%;
-  /* height: 150%; */
   display: flex;
-  /* margin-left: 30%; */
   justify-content: space-around;
- 
-  
-  
-  
+  height: auto;
 }
 
-/* #container>div{
-  border: 1px solid rgb(38, 19, 212);
-} */
+
 
 .logoimage{
   width: 30%;
@@ -198,13 +191,17 @@ video {
   flex: 0.295;
   /* background-color: rgb(231, 227, 227); */
   background-color: rgb(45, 44, 44);
-  color: white;
+  color: black;
   background-image: url("./img/chesspieces/wikipedia/black_sky.jpg");
   /* background-image: url("https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg"); */
 }
 .main__chat_window {
-  flex-grow: 1;
+   flex-grow: 1;
   overflow-y: scroll;
+  background-color: #f0d9b5;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
 }
 
 .main__chat_window::-webkit-scrollbar {
@@ -222,6 +219,7 @@ video {
   justify-content: center;
   overflow: auto;
 }
+
 
 .main__message_container > input {
   height: 50px;
@@ -252,3 +250,10 @@ video {
 .main__right{
   border-radius: 5px;
 }
+
+@media only screen and (max-device-width: 576px) {
+  #container{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+} 

@@ -16,7 +16,6 @@ const socketserver = (io) => {
             let room=uid(10)
        
             const user={
-
                 id: socket.id,
                 name: username,
                 room: room
